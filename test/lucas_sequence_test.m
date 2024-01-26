@@ -22,7 +22,7 @@ classdef lucas_sequence_test < matlab.unittest.TestCase
             % * Handling vectors that both increase and decrease
 
             n = [0:10, 21:-2:11];
-            expectedResult = fibonacci(n);
+            expectedResult = [0	1	1	2	3	5	8	13	21	34	55	10946	4181	1597	610	233	89];
             actualResult = lucas_sequence(n);
 
             testCase.verifyEqual(actualResult, expectedResult);
