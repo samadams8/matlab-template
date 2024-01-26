@@ -1,16 +1,24 @@
 # Summary
 
-Please include a summary of the changes and the related issue. Please also include relevant motivation and context. List any dependencies that are required for this change.
+Please include a summary of the changes and the related issue. Please also include relevant motivation and context. 
 
-### Related Issues
-Closes #issue
+## Changes
+*List changes included in this pull request in the relevant sections below. Delete any unused sections.*
+*To support automatic issue management, include the issue numbers of any .*
 
-### Nature of change
-- [ ] Bug fix (non-breaking change which fixes an issue)
-- [ ] New feature (non-breaking change which adds functionality)
-- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
-      ***Please see our guidelines on breaking changes.***
-- [ ] Documentation revisions (not related to fixes or feature changes)
+### Major changes
+- List any backward incompatible changes introduced to the public API.
+### Minor changes
+- List any new, backward compatible functionality introduced to the public API.
+- List any public API functionality that was marked as deprecated.
+### Patches
+- List any backward compatible bug fixes introduced.
+### Dependency changes
+- List any newly introduced dependencies or if updated versions of any dependency are now required.
+### Private / internal API changes
+- List any changes to internal functionality that are not associtaed with one of the above changes.
+### Documentation changes
+- List any changes to documentation that are not associated with one of the above changes.
 
 # Testing
 ### Unit tests implemented
