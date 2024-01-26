@@ -1,9 +1,8 @@
 # Summary
-*Please summarize the changes included in this pull request, together with any relevant motivation and context.*
+*Please summarize the changes included in this pull request, together with any relevant motivation, context.*
 
 # Changes
 *List changes included in this pull request in the relevant sections below. Delete any unused sections.*
-*To support automatic issue management, include the issue numbers of any .*
 
 ### Major changes
 - List any backward incompatible changes introduced to the public API.
