@@ -1,20 +1,22 @@
-# Description
+# Summary
 
 Please include a summary of the changes and the related issue. Please also include relevant motivation and context. List any dependencies that are required for this change.
 
+### Related Issues
 Closes #issue
 
-# Nature of change
+### Nature of change
 - [ ] Bug fix (non-breaking change which fixes an issue)
 - [ ] New feature (non-breaking change which adds functionality)
-- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected) ***Please see our guidelines on breaking changes.***
+- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
+      ***Please see our guidelines on breaking changes.***
 - [ ] Documentation revisions (not related to fixes or feature changes)
 
 # Testing
-## Unit tests implemented
+### Unit tests implemented
 *Describe any unit tests implemented and the API features safeguarded by the unit tests. If unit tests were not implemented, explain what prevented their implementation.*
 ...
-## Other testing
+### Other testing
 *Report any conducted testing not part of unit testing (such as manual verification). Provide sufficient detail that your results could be reproduced, including any assets required for testing.*
 ...
 
@@ -28,7 +30,8 @@ Closes #issue
 - [ ] New and existing unit tests pass locally with my changes
 - [ ] Any dependent changes have been merged and published in downstream modules
 
-- [ ] I have added any appropriate deprecation warnings. `warning('FUNCTION has been deprecated and may lose support in future versions. Use METHOD instead.')`
+- [ ] I have added any appropriate deprecation warnings.
+      `warning('FUNCTION has been deprecated and may lose support in future versions. Use METHOD instead.')`
 
 ## Checklist for reviewer(s)
 - [ ] 
