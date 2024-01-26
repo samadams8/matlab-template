@@ -78,6 +78,6 @@ else
 end
 
 % Copy values into padded image
-% imPad(destRng{:}) = im(sourceRng{:});
+imPad(destRng{:}) = im(sourceRng{:});
 
 end
