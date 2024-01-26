@@ -1,14 +1,14 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Main branch status checks
+name: Pull request status checks
 
 # Controls when the workflow will run
 on:
   # We want to run this workflow on all pull requests
   # Also automated to run for all pushes to the default branch to ensure we have up-to-date results
+  pull_request:
   push:
     branches: [ $default-branch ]
-  pull_request:
   
   workflow_dispatch:
 
