@@ -9,23 +9,30 @@ on:
       matlab:
         required: false
         type: string
-        default: "R2021a"
+        default: R2021a
+      runner:
+        required: false
+        type: string
+        default: ubuntu-latest
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
     inputs:
-        matlab:
-          description: >-
-            MATLAB release to set up (R2020a or later)
-          required: false
-          default: latest
+      matlab:
+        description: >-
+          MATLAB release to set up (R2020a or later)
+        required: false
+        default: latest
+      runner:
+        required: false
+        default: ubuntu-latest
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
   matlab-tests:
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+    runs-on: ${{ inputs.runner }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
