@@ -1,8 +1,7 @@
 # Summary
+*Please summarize the changes included in this pull request, together with any relevant motivation and context.*
 
-Please include a summary of the changes and the related issue. Please also include relevant motivation and context. 
-
-## Changes
+# Changes
 *List changes included in this pull request in the relevant sections below. Delete any unused sections.*
 *To support automatic issue management, include the issue numbers of any .*
 
@@ -23,10 +22,10 @@ Please include a summary of the changes and the related issue. Please also inclu
 # Testing
 ### Unit tests implemented
 *Describe any unit tests implemented and the API features safeguarded by the unit tests. If unit tests were not implemented, explain what prevented their implementation.*
-...
+
 ### Other testing
 *Report any conducted testing not part of unit testing (such as manual verification). Provide sufficient detail that your results could be reproduced, including any assets required for testing.*
-...
+
 
 # Checklist
 - [ ] My code follows the style guidelines of this project
