@@ -4,11 +4,11 @@ name: Main branch status checks
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events
+  # We want to run this workflow on all pull requests
+  # Also automated to run for all pushes to the default branch to ensure we have up-to-date results
   push:
     branches: [ $default-branch ]
   pull_request:
-    branches: [ $default-branch ]
   
   workflow_dispatch:
 
@@ -16,12 +16,16 @@ jobs:
   run-tests:
     strategy:
       matrix:
-        matlabversion: [R2021a]
+        matlabversion: [R2021a, latest]
+        # Matlab action *does not support toolboxes* on windows in v1
+        # Exclude MacOS because of it's limited support by both GitHub and Matlab
+        runner: [ubuntu-latest, windows-latest]
     uses: ./.github/workflows/run-tests.yml
     with:
       matlab: ${{matrix.matlabversion}}
+      runner: ${{matrix.runner}}
   
-  pr-status:
+  pull-request-status:
     if: always()
     needs:
     - run-tests
