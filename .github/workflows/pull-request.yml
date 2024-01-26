@@ -5,15 +5,20 @@ name: Pull request status checks
 # Controls when the workflow will run
 on:
   # We want to run this workflow on all pull requests
-  # Also automated to run for all pushes to the default branch to ensure we have up-to-date results
   pull_request:
+
+  # Also automated to run for all pushes to the default branch to ensure we have up-to-date results
   push:
     branches: [ $default-branch ]
   
   workflow_dispatch:
 
 jobs:
-  run-tests:
+#   build:
+#   docs:
+#   linters:
+#   package-linters:
+  tests:
     strategy:
       matrix:
         matlabversion: [R2021a, latest]
@@ -25,10 +30,15 @@ jobs:
       matlab: ${{matrix.matlabversion}}
       runner: ${{matrix.runner}}
   
-  pull-request-status:
+  pull-request-check:
     if: always()
     needs:
-    - run-tests
+    - tests
     runs-on: ubuntu-latest
     steps:
-    - run: echo "Check complete!"
+    - name: Decide whether the needed jobs succeeded or failed
+      uses: re-actors/alls-green@release/v1
+      with:
+        # allowed-failures: docs, linters
+        # allowed-skips:
+        jobs: ${{ toJSON(needs) }}
