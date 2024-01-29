@@ -39,7 +39,7 @@ jobs:
     with:
       matlab: latest
       runner: ubuntu-latest
-      thresholds: '60 90'
+      thresholds: ${{ vars.COVERAGE_THRESHOLDS }}
   
   pull-request-check:
     if: always()
