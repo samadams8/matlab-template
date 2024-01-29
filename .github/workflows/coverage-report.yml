@@ -27,7 +27,7 @@ jobs:
     - name: Download test artifacts
       uses: actions/download-artifact@v4
       with:
-        pattern: coverage_matlab-${{matlab}}_${{runner}}
+        pattern: coverage_matlab-${{ inputs.matlab }}_${{ inputs.runner }}
         merge-multiple: true
         path: coverage
         
@@ -42,7 +42,7 @@ jobs:
         hide_complexity: true
         indicators: false
         output: both
-        thresholds: ${{ thresholds }}
+        thresholds: ${{ inputs.thresholds }}
     
     - name: Add Coverage PR Comment
       uses: marocchino/sticky-pull-request-comment@v2
