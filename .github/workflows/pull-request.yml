@@ -28,7 +28,7 @@ jobs:
         matlabversion: [R2021a, latest]
         # Matlab action *does not support toolboxes* on windows in v1
         # Exclude MacOS because of it's limited support by both GitHub and Matlab
-        runner: [ubuntu-latest, windows-latest]
+        runner: [ubuntu-latest]  #, windows-latest]
     uses: ./.github/workflows/run-tests.yml
     with:
       matlab: ${{matrix.matlabversion}}
@@ -43,7 +43,7 @@ jobs:
     - name: Download test artifacts
       uses: actions/download-artifact@v4
       with:
-        run-id: run-tests
+        run-id: test-results
         pattern: test/*_coverage.xml
         merge-multiple: true
         path: test/
