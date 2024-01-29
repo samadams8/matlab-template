@@ -43,7 +43,7 @@ jobs:
     - name: Download test artifacts
       uses: actions/download-artifact@v4
       with:
-        name: code-coverage_*  # ${{ vars.MATLAB_VERSIONS[0] }}-${{ vars.PLATFORMS[0] }}
+        name: code-coverage_${{ vars.MATLAB_VERSIONS[0] }}-${{ vars.PLATFORMS[0] }}
         merge-multiple: true
         path: test
         
