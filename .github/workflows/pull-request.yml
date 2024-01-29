@@ -29,8 +29,8 @@ jobs:
         runner: [ubuntu-latest, windows-latest]
     uses: ./.github/workflows/run-tests.yml
     with:
-      matlab: ${{matrix.matlabversion}}
-      runner: ${{matrix.runner}}
+      matlab: ${{ matrix.matlabversion }}
+      runner: ${{ matrix.runner }}
 
   coverage-report:
     if: always()
@@ -41,7 +41,7 @@ jobs:
     - name: Download test artifacts
       uses: actions/download-artifact@v4
       with:
-        name: code-coverage_*  # latest-ubuntu-latest
+        # name: code-coverage_latest-ubuntu-latest
         merge-multiple: true
         path: test
         
