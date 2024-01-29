@@ -43,15 +43,15 @@ jobs:
     - name: Download test artifacts
       uses: actions/download-artifact@v4
       with:
-        run-id: test-results
-        pattern: test/*_coverage.xml
+        name: test-results
+        # pattern: "*_coverage.xml"
         merge-multiple: true
-        path: test/
+        path: test
         
     - name: Code Coverage Report
       uses: irongut/CodeCoverageSummary@v1.3.0
       with:
-        filename: test/*_coverage.xml
+        filename: "test/*_coverage.xml"
         badge: true
         fail_below_min: true
         format: markdown
