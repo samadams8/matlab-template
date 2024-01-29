@@ -35,7 +35,6 @@ jobs:
   coverage-report:
     needs: 
       - tests
-    if: success() || failure()
     uses: ./.github/workflows/coverage-report.yml
     with:
       matlab: latest
