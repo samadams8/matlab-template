@@ -40,18 +40,27 @@ jobs:
     - tests
     runs-on: ubuntu-latest
     steps:
+    - name: Download test artifacts
+      uses: actions/download-artifact@v4
+      with:
+        run-id: run-tests
+        pattern: test/*_coverage.xml
+        merge-multiple: true
+        path: test/
+        
     - name: Code Coverage Report
       uses: irongut/CodeCoverageSummary@v1.3.0
       with:
-        filename: test/coverage.xml
+        filename: test/*_coverage.xml
         badge: true
         fail_below_min: true
         format: markdown
         hide_branch_rate: false
-        hide_complexity: true
-        indicators: true
+        hide_complexity: false
+        indicators: false
         output: both
         thresholds: '60 90'
+    
     - name: Add Coverage PR Comment
       uses: marocchino/sticky-pull-request-comment@v2
       if: github.event_name == 'pull_request'
@@ -63,6 +72,7 @@ jobs:
     if: always()
     needs:
     - tests
+    - coverage-report
     runs-on: ubuntu-latest
     steps:
     - name: Decide whether the needed jobs succeeded or failed
