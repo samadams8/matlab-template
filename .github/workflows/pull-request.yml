@@ -43,17 +43,17 @@ jobs:
       with:
         pattern: coverage_matlab-latest_ubuntu-latest
         merge-multiple: true
-        path: test
+        path: coverage
         
     - name: Code Coverage Report
       uses: irongut/CodeCoverageSummary@v1.3.0
       with:
-        filename: test/*_coverage.xml
+        filename: coverage/*.xml
         badge: true
         fail_below_min: true
         format: markdown
-        hide_branch_rate: false
-        hide_complexity: false
+        hide_branch_rate: true
+        hide_complexity: true
         indicators: false
         output: both
         thresholds: '60 90'
