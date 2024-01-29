@@ -57,11 +57,11 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: code-coverage_${{inputs.matlab}}-${{inputs.runner}}
-          path: ${{inputs.matlab}}-${{inputs.runner}}_coverage.xml
+          path: matlab-${{inputs.matlab}}-${{inputs.runner}}_coverage.xml
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: test-results_${{inputs.matlab}}-${{inputs.runner}}
-          path: ${{inputs.matlab}}-${{inputs.runner}}_results.xml
+          path: matlab-${{inputs.matlab}}-${{inputs.runner}}_results.xml
