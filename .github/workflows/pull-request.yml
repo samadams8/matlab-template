@@ -39,6 +39,7 @@ jobs:
     with:
       matlab: latest
       runner: ubuntu-latest
+      # Using a repository variable for this means only admins can adjust thresholds
       thresholds: ${{ vars.COVERAGE_THRESHOLDS }}
   
   pull-request-check:
