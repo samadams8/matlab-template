@@ -33,37 +33,14 @@ jobs:
       matlab: ${{ matrix.matlabversion }}
 
   coverage-report:
-    if: always()
     needs: 
-    - tests
-    runs-on: ubuntu-latest
-    steps:
-    - name: Download test artifacts
-      uses: actions/download-artifact@v4
-      with:
-        pattern: coverage_matlab-latest_ubuntu-latest
-        merge-multiple: true
-        path: coverage
-        
-    - name: Code Coverage Report
-      uses: irongut/CodeCoverageSummary@v1.3.0
-      with:
-        filename: coverage/*.xml
-        badge: true
-        fail_below_min: true
-        format: markdown
-        hide_branch_rate: true
-        hide_complexity: true
-        indicators: false
-        output: both
-        thresholds: '60 90'
-    
-    - name: Add Coverage PR Comment
-      uses: marocchino/sticky-pull-request-comment@v2
-      if: github.event_name == 'pull_request'
-      with:
-        recreate: true
-        path: code-coverage-results.md
+      - tests
+    if: success() || failure()
+    uses: ./.github/workflows/coverage-report.yml
+    with:
+      matlab: latest
+      runner: ubuntu-latest
+      thresholds: '60 90'
   
   pull-request-check:
     if: always()
