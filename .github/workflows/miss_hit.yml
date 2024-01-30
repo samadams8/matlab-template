@@ -3,9 +3,9 @@ name: miss_hit
 on:
   workflow_dispatch:
   
-  # push:
+  push:
     # branches:
-  # pull_request:
+  pull_request:
 
 jobs:
   build:
