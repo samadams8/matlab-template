@@ -19,6 +19,6 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Count Lines Of Code (cloc)
-        uses: djdefi/cloc-action@v6
+        uses: djdefi/cloc-action@main
         with:
           options: -v --force-lang="MATLAB",m --match-d='code' --not-match-d='private'
