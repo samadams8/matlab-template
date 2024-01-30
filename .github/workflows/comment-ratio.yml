@@ -19,7 +19,7 @@ jobs:
       - name: Count Lines Of Code (cloc)
         uses: djdefi/cloc-action@main
         with:
-          options: -v --unix --force-lang=MATLAB,m --match-d=code --not-match-d=private --report-file=clocreport.csv --by-percent cm
+          options: -v --unix --force-lang=MATLAB,m --match-d=code --not-match-d=private --by-file --csv --report-file=clocreport.csv
 
       - name: Upload cloc report
         uses: actions/upload-artifact@v4
