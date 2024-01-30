@@ -1,11 +1,11 @@
 name: miss_hit
 
 on:
-  workflow_run:
+  workflow_dispatch:
   
-  push:
+  # push:
     # branches:
-  pull_request:
+  # pull_request:
 
 jobs:
   build:
