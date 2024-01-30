@@ -29,15 +29,27 @@ jobs:
 
       - name: Read cloc report
         id: yaml-data
-        uses: jbutcher5/read-yaml@main
+        uses: christian-ci/action-yaml-github-output@v2
         with:
-          file: cloc_report.yaml
-          key-path: '["SUM"]'
+          file_path: cloc_report.yaml
+          main_key: SUM
 
       - name: Compute comment ratio
         run: |
-          echo comment: ${{ fromJSON(steps.yaml-data.outputs.data)['comment'] }}
-          echo code: ${{ fromJSON(steps.yaml-data.outputs.data)['code'] }}
+          echo comment: ${{ env.COMMENT }}
+          echo code: ${{ env.CODE }}
+          
+      # - name: Read cloc report
+      #   id: yaml-data
+      #   uses: jbutcher5/read-yaml@main
+      #   with:
+      #     file: cloc_report.yaml
+      #     key-path: '["SUM"]'
+
+      # - name: Compute comment ratio
+      #   run: |
+      #     echo comment: ${{ fromJSON(steps.yaml-data.outputs.data)['comment'] }}
+      #     echo code: ${{ fromJSON(steps.yaml-data.outputs.data)['code'] }}
           
         
         
