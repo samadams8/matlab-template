@@ -27,8 +27,16 @@ jobs:
           name: cloc-report
           path: cloc_report.yaml
 
-      # - name: Evaluate comment ratio
-      #   run: |
+      - name: Read cloc report
+        uses: pietrobolcato/action-read-yaml@1.0.0
+        id: cloc-report
+        with:
+          config: cloc_report.yaml
+
+      - name: Compute comment ratio
+        run: |
+          echo num_comments: ${{ steps.cloc-report.outputs['SUM']['comment'] }}
+          echo num_code: ${{ steps.cloc-report.outputs['SUM']['code'] }}
           
         
         
