@@ -20,6 +20,7 @@ permissions:
 
 jobs:
   pre-job:
+    if: always()
     # continue-on-error: true # Uncomment once integration is finished
     runs-on: ubuntu-latest
     # Map a step output to a job output
@@ -63,10 +64,11 @@ jobs:
       thresholds: ${{ vars.COVERAGE_THRESHOLDS }}
   
   pull-request-check:
-    if: always()
     needs:
+    - pre-job
     - tests
     - coverage-report
+    if: needs.pre-job.outputs.should-skip != 'true'
     runs-on: ubuntu-latest
     steps:
     - name: Decide whether the needed jobs succeeded or failed
