@@ -28,15 +28,16 @@ jobs:
           path: cloc_report.yaml
 
       - name: Read cloc report
-        uses: pietrobolcato/action-read-yaml@1.0.0
-        id: cloc-report
+        id: yaml-data
+        uses: jbutcher5/read-yaml@main
         with:
-          config: cloc_report.yaml
+          file: cloc_report.yaml
+          key-path: '["SUM"]'
 
       - name: Compute comment ratio
         run: |
-          echo num_comments: ${{ steps.cloc-report.outputs['SUM']['comment'] }}
-          echo num_code: ${{ steps.cloc-report.outputs['SUM']['code'] }}
+          echo num_comments: ${{ steps.yaml-data.outputs['SUM']['comment'] }}
+          echo num_code: ${{ steps.yaml-data.outputs['SUM']['code'] }}
           
         
         
