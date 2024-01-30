@@ -1,5 +1,6 @@
 Contribution guidelines
 - [ ] Code compiles and introduces no new compiler warnings
+- [ ] Docstrings are provided for all public API
 - [ ] Code is commented, particularly in hard-to-understand areas
 - [ ] Tests demonstrate that implemented fix is effective or that the new feature works
 - [ ] All changes and additions impacting public API have unit tests
