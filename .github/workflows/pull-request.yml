@@ -19,7 +19,7 @@ permissions:
   contents: read
 
 jobs:
-  pre-job:
+  pre-pr:
     if: always()
     # continue-on-error: true # Uncomment once integration is finished
     runs-on: ubuntu-latest
@@ -40,7 +40,7 @@ jobs:
 #   linters:
 #   package-linters:
   tests:
-    needs: pre-job
+    needs: pre-pr
     if: needs.pre-job.outputs.should-skip != 'true'
     strategy:
       matrix:
@@ -54,7 +54,7 @@ jobs:
   coverage-report:
     needs: 
       - tests
-      - pre-job
+      - pre-pr
     if: needs.pre-job.outputs.should-skip != 'true'
     uses: ./.github/workflows/coverage-report.yml
     with:
@@ -65,7 +65,7 @@ jobs:
   
   pull-request-check:
     needs:
-    - pre-job
+    - pre-pr
     - tests
     - coverage-report
     if: needs.pre-job.outputs.should-skip != 'true'
