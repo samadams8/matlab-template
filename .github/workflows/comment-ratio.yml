@@ -38,6 +38,7 @@ jobs:
         run: |
           echo comment: ${{ env.COMMENT }}
           echo code: ${{ env.CODE }}
+          echo ratio: $(( $COMMENT / ($COMMENT + $CODE) ))
           
       # - name: Read cloc report
       #   id: yaml-data
