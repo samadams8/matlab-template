@@ -19,4 +19,4 @@ jobs:
       - name: Count Lines Of Code (cloc)
         uses: djdefi/cloc-action@main
         with:
-          options: -v --force-lang=MATLAB,m --match-d=code --not-match-d=private
+          options: -v --by-file --force-lang=MATLAB,m --match-d=code --not-match-d=private --sum-reports
