@@ -13,18 +13,22 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       # Runs a single command using the runners shell
       - name: Count Lines Of Code (cloc)
         uses: djdefi/cloc-action@main
         with:
-          options: -v --unix --force-lang=MATLAB,m --match-d=code --not-match-d=private --by-file --csv --report-file=clocreport.csv
+          options: -v --unix --force-lang=MATLAB,m --match-d=code --not-match-d=private --by-file --yaml --report-file=cloc_report.yaml
 
       - name: Upload cloc report
         uses: actions/upload-artifact@v4
         with:
-          name: cloc
-          path: clocreport.csv
+          name: cloc-report
+          path: cloc_report.yaml
 
+      # - name: Evaluate comment ratio
+      #   run: |
+          
+        
         
