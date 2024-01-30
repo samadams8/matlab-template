@@ -36,7 +36,8 @@ jobs:
 
       - name: Compute comment ratio
         run: |
-          echo ${{ steps.yaml-data.outputs.data }}
+          echo comment: ${{ steps.yaml-data.outputs.data["comment"] }}
+          echo code: ${{ steps.yaml-data.outputs.data["code"] }}
           
         
         
