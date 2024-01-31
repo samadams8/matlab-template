@@ -38,7 +38,16 @@ jobs:
         run: |
           echo comment: ${{ env.COMMENT }}
           echo code: ${{ env.CODE }}
-          echo bc <<< "scale=2 ; $COMMENT / ($CODE + $COMMENT)"
+          echo "scale=2 ; $COMMENT / ($CODE + $COMMENT)" | bc | $RATIO
+          
+      - name: Eval fail
+        if: env.RATIO < 0.50
+        run: echo fail
+
+      - name: Eval pass
+        if: env.RATIO >= 0.50
+        run: echo pass
+          
           
       # - name: Read cloc report
       #   id: yaml-data
