@@ -13,7 +13,7 @@ warning('A newer version of function_v1 exists. Consider using the most up-to-da
 # Style Guide
 
 ## Function arguments
-As of MATLAB 2019a, functions can be declared with an `arguments` block that makes it simple to configure optional and keyword arguments.
+As of MATLAB 2019a, functions can be declared with an [`arguments` block](https://www.mathworks.com/help/matlab/ref/arguments.html) that makes it simple to configure optional and keyword arguments.
 
 ## Documentation
 For all public APIs, create a docstring using a modified [NumPy docstring format](https://numpydoc.readthedocs.io/en/latest/format.html). The docstring consists of
@@ -35,16 +35,17 @@ Each section heading should be underlined with hyphens. Any included sections sh
 
 ### Example
 ```
-function out = foo(bar, baz, type, options)
+function foobar = foo(bar, baz, type, options)
 % A sample function definition for our docstring style
 %
-% out = foo(bar)
-% out = foo(bar, baz,
-% out = foo(_, type)
-% out = foo(_, Name, Value)
+% foobar = foo(bar)
+% foobar = foo(bar, baz,
+% foobar = foo(_, type)
+% foobar = foo(_, Name, Value)
 %
-% The terms foo, bar, and baz are common placeholder names
-% in computer programming and documentation [1].
+% An extended description can go here. The terms foo, bar,
+% and baz are common placeholder names in computer
+% programming and documentation [1].
 %
 % Input
 % -----
@@ -64,7 +65,7 @@ function out = foo(bar, baz, type, options)
 % 
 % Output
 % ------
-% out : (N,M,3) real
+% foobar : (N,M,3) real
 %
 % Notes
 % -----
