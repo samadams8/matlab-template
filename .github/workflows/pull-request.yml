@@ -36,7 +36,6 @@ jobs:
   coverage-report:
     needs: 
       - tests
-    if: needs.pre-job.outputs.should-skip != 'true'
     uses: ./.github/workflows/coverage-report.yml
     with:
       matlab: latest
@@ -47,7 +46,8 @@ jobs:
   comment-ratio:
     uses: ./.github/workflows/comment-ratio.yml
     with:
-      failure_threshold: 0.25
+      # Using a repository variable for this means only admins can adjust thresholds
+      failure_threshold: ${{ vars.COMMENT_THRESHOLD }}
   
   pull-request-check:
     needs:
