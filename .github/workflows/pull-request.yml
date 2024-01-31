@@ -6,11 +6,6 @@ name: Pull request status checks
 on:
   # We want to run this workflow on all pull requests
   pull_request:
-
-  # Also automated to run for all pushes to the default branch to ensure we have up-to-date results
-  push:
-    branches: [ $default-branch ]
-  
   workflow_dispatch:
 
 permissions:
