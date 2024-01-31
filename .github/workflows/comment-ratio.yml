@@ -38,7 +38,8 @@ jobs:
         run: |
           echo comment: ${{ env.COMMENT }}
           echo code: ${{ env.CODE }}
-          echo "scale=2 ; $COMMENT / ($CODE + $COMMENT)" | bc | $RATIO
+          RATIO=$(echo "scale=2 ; $COMMENT / ($CODE + $COMMENT)" | bc)
+          echo ratio: ${{ env.RATIO }}
           
       - name: Eval fail
         if: env.RATIO < 0.50
