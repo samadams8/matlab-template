@@ -49,12 +49,20 @@ jobs:
     with:
       # Using a repository variable for this means only admins can adjust thresholds
       failure_threshold: ${{ vars.COMMENT_THRESHOLD }}
+      
+  require-checklist:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: mheap/require-checklist-action@v2
+        with:
+          requireChecklist: true
   
   pull-request-check:
     needs:
     - run-tests
     - coverage-report
     - comment-ratio
+    - require-checklist
     if: always()
     runs-on: ubuntu-latest
     steps:
