@@ -15,3 +15,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+    - name: Sphinx build
+      uses: ammaraskar/sphinx-action@v0.4
+      with:
+        docs-folder: docs/
+    - uses: actions/upload-artifact@v1
+      with:
+        name: DocumentationHTML
+        path: docs/_build/html/
