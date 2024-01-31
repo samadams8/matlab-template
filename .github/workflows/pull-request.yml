@@ -6,11 +6,6 @@ name: Pull request status checks
 on:
   # We want to run this workflow on all pull requests
   pull_request:
-
-  # Also automated to run for all pushes to the default branch to ensure we have up-to-date results
-  push:
-    branches: [ $default-branch ]
-  
   workflow_dispatch:
 
 permissions:
@@ -22,11 +17,18 @@ jobs:
 #   docs:
 #   linters:
 #   package-linters:
-  tests:
+  run-tests:
     strategy:
+      fail-fast: true
       matrix:
-        runner: [ubuntu-latest, windows-latest]
-        matlabversion: [latest, R2021a]
+        runner: [ubuntu-latest]
+        matlabversion: [latest, R2023a, R2022a, R2021a]
+        include:
+        # Also check for cross platform compatibility
+        - runner: macos-latest
+          matlabversion: latest
+        - runner: windows-latest
+          matlabversion: latest
     uses: ./.github/workflows/run-tests.yml
     with:
       runner: ${{ matrix.runner }}
@@ -34,24 +36,31 @@ jobs:
 
   coverage-report:
     needs: 
-      - tests
+      - run-tests
     uses: ./.github/workflows/coverage-report.yml
     with:
       matlab: latest
       runner: ubuntu-latest
       # Using a repository variable for this means only admins can adjust thresholds
       thresholds: ${{ vars.COVERAGE_THRESHOLDS }}
+
+  comment-ratio:
+    uses: ./.github/workflows/comment-ratio.yml
+    with:
+      # Using a repository variable for this means only admins can adjust thresholds
+      failure_threshold: ${{ vars.COMMENT_THRESHOLD }}
   
   pull-request-check:
-    if: always()
     needs:
-    - tests
+    - run-tests
     - coverage-report
+    - comment-ratio
+    if: always()
     runs-on: ubuntu-latest
     steps:
     - name: Decide whether the needed jobs succeeded or failed
       uses: re-actors/alls-green@release/v1
       with:
-        # allowed-failures: docs, linters
+        allowed-failures: comment-ratio  # docs, linters
         # allowed-skips:
         jobs: ${{ toJSON(needs) }}

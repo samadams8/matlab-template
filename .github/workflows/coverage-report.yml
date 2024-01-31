@@ -15,9 +15,8 @@ on:
         type: string
         default: ubuntu-latest
       thresholds:
-        required: false
+        required: true
         type: string
-        default: '60 90'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
