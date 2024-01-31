@@ -4,8 +4,8 @@ function l = lucas_sequence(n, type, P, Q)
 %  l = lucas_sequence(n)
 %  l = lucas_sequence(n, type, P, Q)
 %
-% Parameters
-% ----------
+% Input
+% -----
 % n : List of indices
 %   Query indices; which elements in the Lucas sequence should be returned.
 %   Can include zero.
@@ -16,8 +16,8 @@ function l = lucas_sequence(n, type, P, Q)
 % Q : scalar, optional
 %   Value for coefficient $Q$. Default is -1.
 %
-% Returns
-% -------
+% Output
+% ------
 % l : List of numerics
 %   Lucas numbers for index `n`.
 %
@@ -52,9 +52,7 @@ function l = lucas_sequence(n, type, P, Q)
 % --------
 % fibonacci
 %
-% Contributors
-% ------------
-% Samuel Adams-Tew
+% 2024-01-31 Samuel Adams-Tew
 arguments
     n(1,:) {mustBeInteger, mustBeNonnegative}
     type string = 'U'
