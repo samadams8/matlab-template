@@ -11,14 +11,3 @@ jobs:
       - uses: mheap/require-checklist-action@v2
         with:
           requireChecklist: true
-          
-  pr-checklist-required:
-    needs:
-    - require-checklist
-    if: always()
-    runs-on: ubuntu-latest
-    steps:
-    - name: Decide whether the needed jobs succeeded or failed
-      uses: re-actors/alls-green@release/v1
-      with:
-        jobs: ${{ toJSON(needs) }}
