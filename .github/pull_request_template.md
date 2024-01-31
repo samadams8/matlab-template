@@ -2,6 +2,7 @@
 
 
 # Review checklist
+*Strikethrough any irrelevant items (`~~- [ ] item~~`)*
 - [ ] All public APIs have [docstrings](../DOCSTRINGS.md)
 - [ ] All public APIs have unit tests that show they work as expected
 - [ ] No public API has been changed in a way that breaks backward compatibility
