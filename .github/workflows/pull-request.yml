@@ -26,8 +26,8 @@ jobs:
   tests:
     strategy:
       matrix:
-        runner: [ubuntu-latest, windows-latest]
-        matlabversion: [latest, R2021a]
+        runner: [ubuntu-latest, windows-latest, macos-latest]
+        matlabversion: [latest, R2023a, R2022a, R2021a]
     uses: ./.github/workflows/run-tests.yml
     with:
       runner: ${{ matrix.runner }}
