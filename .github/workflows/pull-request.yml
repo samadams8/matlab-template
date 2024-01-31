@@ -19,28 +19,11 @@ permissions:
   contents: read
 
 jobs:
-  pre-pr:
-    # continue-on-error: true # Uncomment once integration is finished
-    runs-on: ubuntu-latest
-    # Map a step output to a job output
-    outputs:
-      should-skip: ${{ steps.skip_check.outputs.should_skip }}
-    steps:
-      - id: skip_check
-        uses: fkirc/skip-duplicate-actions@v5
-        with:
-          # All of these options are optional, so you can remove them if you are happy with the defaults
-          cancel_others: 'true'
-          skip_after_successful_duplicate: 'true'
-          paths_ignore: '[".github/**"]'  # '["**/README.md", "**/docs/**"]'
-          # do_not_skip: '["pull_request", "workflow_dispatch", "schedule"]'
 #   build:
 #   docs:
 #   linters:
 #   package-linters:
   tests:
-    needs: pre-pr
-    if: needs.pre-job.outputs.should-skip != 'true'
     strategy:
       matrix:
         runner: [ubuntu-latest, windows-latest]
@@ -53,7 +36,6 @@ jobs:
   coverage-report:
     needs: 
       - tests
-      - pre-pr
     if: needs.pre-job.outputs.should-skip != 'true'
     uses: ./.github/workflows/coverage-report.yml
     with:
@@ -61,13 +43,18 @@ jobs:
       runner: ubuntu-latest
       # Using a repository variable for this means only admins can adjust thresholds
       thresholds: ${{ vars.COVERAGE_THRESHOLDS }}
+
+  comment-ratio:
+    uses: ./.github/workflows/run-tests.yml
+    with:
+      failure_threshold: 0.25
   
   pull-request-check:
     needs:
-    - pre-pr
     - tests
     - coverage-report
-    if: needs.pre-job.outputs.should-skip != 'true'
+    - comment-ratio
+    if: always()
     runs-on: ubuntu-latest
     steps:
     - name: Decide whether the needed jobs succeeded or failed
