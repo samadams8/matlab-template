@@ -1,6 +1,6 @@
 *After creating a new repository based on this template, be sure to configure the environment variables necessary to run GitHub workflows*
 
-Contribution guidelines
+Guidelines
 - [ ] Code compiles and introduces no new compiler warnings
 - [ ] All public APIs have [docstrings](../DOCSTRINGS.md)
 - [ ] All public APIs have unit tests that show they work as expected
