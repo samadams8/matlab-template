@@ -38,8 +38,9 @@ jobs:
         run: |
           echo comment: ${{ env.COMMENT }}
           echo code: ${{ env.CODE }}
-          RATIO=$(echo "scale=2 ; $COMMENT / ($CODE + $COMMENT)" | bc)
-          echo ratio: $RATIO
+          echo "RATIO=$(echo "scale=2 ; $COMMENT / ($CODE + $COMMENT)" | bc)" >> $GITHUB_ENV
+          echo ratio: ${{ env.RATIO }}
+          
           
       - name: Eval fail
         if: env.RATIO < 0.50
