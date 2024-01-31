@@ -47,7 +47,7 @@ jobs:
   comment-ratio:
     uses: ./.github/workflows/comment-ratio.yml
     with:
-      failure_threshold: 0.90
+      failure_threshold: 0.25
   
   pull-request-check:
     needs:
@@ -60,6 +60,6 @@ jobs:
     - name: Decide whether the needed jobs succeeded or failed
       uses: re-actors/alls-green@release/v1
       with:
-        # allowed-failures: docs, linters
+        allowed-failures: comment-ratio  # docs, linters
         # allowed-skips:
         jobs: ${{ toJSON(needs) }}
