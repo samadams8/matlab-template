@@ -3,12 +3,18 @@
 name: comment-ratio
 
 on:
+  workflow_dispatch:
+    inputs: 
+      failure_threshold:
+        required: false
+        type: string
+        default: '0.25'
   workflow_call:
     inputs: 
       failure_threshold:
         required: false
-        type: number
-        default: 0.25
+        type: string
+        default: '0.25'
 
 jobs:
   comment-ratio:
@@ -44,7 +50,7 @@ jobs:
           echo "RATIO=$(echo "scale=2 ; $COMMENT / ($CODE + $COMMENT)" | bc)" >> $GITHUB_ENV
           
       - name: Eval fail
-        if: env.RATIO < inputs.failure_threshold
+        if: env.RATIO < fromJSON(inputs.failure_threshold)
         run: exit 1
           
           
