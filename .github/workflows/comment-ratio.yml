@@ -3,9 +3,12 @@
 name: comment-ratio
 
 on:
-  workflow_dispatch:
   workflow_call:
-  pull_request:
+    inputs: 
+      failure_threshold:
+        required: false
+        type: number
+        default: 0.25
 
 jobs:
   comment-ratio:
@@ -41,14 +44,9 @@ jobs:
           echo "RATIO=$(echo "scale=2 ; $COMMENT / ($CODE + $COMMENT)" | bc)" >> $GITHUB_ENV
           echo ratio: ${{ env.RATIO }}
           
-          
       - name: Eval fail
-        if: env.RATIO < 0.50
-        run: echo fail
-
-      - name: Eval pass
-        if: env.RATIO >= 0.50
-        run: echo pass
+        if: env.RATIO < inputs.failure_threshold
+        run: exit 1
           
           
       # - name: Read cloc report
