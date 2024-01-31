@@ -47,7 +47,7 @@ jobs:
   comment-ratio:
     uses: ./.github/workflows/comment-ratio.yml
     with:
-      failure_threshold: 0.25
+      failure_threshold: 0.90
   
   pull-request-check:
     needs:
