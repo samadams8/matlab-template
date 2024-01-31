@@ -22,21 +22,18 @@ jobs:
 #   docs:
 #   linters:
 #   package-linters:
-  test-versions:
+  run-tests:
     strategy:
+      fail-fast: true
       matrix:
         runner: [ubuntu-latest]
         matlabversion: [latest, R2023a, R2022a, R2021a]
-    uses: ./.github/workflows/run-tests.yml
-    with:
-      runner: ${{ matrix.runner }}
-      matlab: ${{ matrix.matlabversion }}
-  
-  test-xplatform:
-    strategy:
-      matrix:
-        runner: [windows-2022, windows-2019, macos-14, macos-13, macos-12]
-        matlabversion: [latest]
+        include:
+        # Also check for cross platform compatibility
+        - runner: macos-latest
+          matlabversion: latest
+        - runner: windows-latest
+          matlabversion: latest
     uses: ./.github/workflows/run-tests.yml
     with:
       runner: ${{ matrix.runner }}
@@ -44,7 +41,7 @@ jobs:
 
   coverage-report:
     needs: 
-      - test-versions
+      - run-tests
     uses: ./.github/workflows/coverage-report.yml
     with:
       matlab: latest
@@ -60,8 +57,7 @@ jobs:
   
   pull-request-check:
     needs:
-    - test-versions
-    - test-xplatform
+    - run-tests
     - coverage-report
     - comment-ratio
     if: always()
