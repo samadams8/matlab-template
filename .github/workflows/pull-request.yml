@@ -45,7 +45,7 @@ jobs:
       thresholds: ${{ vars.COVERAGE_THRESHOLDS }}
 
   comment-ratio:
-    uses: ./.github/workflows/run-tests.yml
+    uses: ./.github/workflows/comment-ratio.yml
     with:
       failure_threshold: 0.25
   
