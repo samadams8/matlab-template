@@ -6,9 +6,8 @@ on:
   workflow_dispatch:
     inputs: 
       failure_threshold:
-        required: false
+        required: true
         type: string
-        default: '0.25'
   workflow_call:
     inputs: 
       failure_threshold:
